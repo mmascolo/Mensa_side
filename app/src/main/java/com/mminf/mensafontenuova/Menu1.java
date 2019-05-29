@@ -56,37 +56,28 @@ public class Menu1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //returning our layout file
-        //change R.layout.yourlayoutfilename for each of your fragments
 
 
         View v = inflater.inflate(R.layout.fragment_menu_2, container, false);
 
-        //  Intent intent = new Intent(getActivity(), ITCutiesReaderAppActivity.class);
-        // startActivity(intent);
-
-
-//
-        //  WebView myWebView =  v.findViewById(R.id.SCUOLA);
-        //      myWebView.setInitialScale(80);
-        //      myWebView.getSettings().setBuiltInZoomControls(true);
-        //      myWebView.getSettings().setDisplayZoomControls(false);
-        //       myWebView.getSettings().setDomStorageEnabled(true);
-
 
         TextView bambino = v.findViewById(R.id.textView2);
         TextView bambino2 = v.findViewById(R.id.textView4);
-        bambino.setVisibility(getView().VISIBLE);
-        bambino2.setVisibility(getView().VISIBLE);
-        bambino2.setText("Per visualizzare il saldo attuale");
-        bambino.setText("Impostare le credenziali nelle impostazioni");
+
+            bambino.setVisibility(getView().VISIBLE);
+            bambino2.setVisibility(getView().VISIBLE);
+            bambino2.setText("Per visualizzare il saldo attuale");
+            bambino.setText("Impostare le credenziali nelle impostazioni");
+
+
+
 
         if (leggi_str("connesso").equals("ok")) {
             bambino.setText("");
-
-
+            bambino2.setVisibility(getView().INVISIBLE);
+            bambino.setVisibility(getView().VISIBLE);
             bambino.setText("Aggiornamento dati saldo in corso");
-            WebView myWebView = v.findViewById(R.id.WEB);
+            final WebView myWebView = v.findViewById(R.id.WEB);
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             myWebView.getSettings().setDomStorageEnabled(true);
@@ -126,7 +117,12 @@ public class Menu1 extends Fragment {
 
                                         scrivi_int("bambini", Integer.parseInt(html21));
                                         Log.e("Contalinee", html21);
-
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            // TODO Auto-generated catch block
+                                            e.printStackTrace();
+                                        }
                                     }
                                 }
                         );
@@ -167,6 +163,7 @@ public class Menu1 extends Fragment {
                                             saldo.setText(input2);
                                             saldo.setVisibility(getView().VISIBLE);
 
+
                                         }
                                     });
 
@@ -188,7 +185,7 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino1", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     Log.e("bambino", input);
                                     TextView bambino = getView().findViewById(R.id.textView4);
                                     bambino.setText(input);
@@ -223,10 +220,11 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     scrivi_str("bambinoappo2", input);
                                     Log.e("bambino", input);
                                     TextView bambino2 = getView().findViewById(R.id.textView6);
+                                    bambino2.setVisibility(getView().VISIBLE);
                                     bambino2.setText(input);
                                 }
                             });
@@ -242,7 +240,10 @@ public class Menu1 extends Fragment {
                                             input2 = "Saldo: " + input2;
                                             scrivi_str("saldoappo2", input2);
                                             TextView saldo2 = getView().findViewById(R.id.textView7);
+                                            saldo2.setVisibility(getView().VISIBLE);
                                             saldo2.setText(input2);
+
+
                                         }
                                     });
 
@@ -267,9 +268,10 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino1", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     Log.e("bambino", input);
                                     TextView bambino = getView().findViewById(R.id.textView4);
+                                    bambino.setVisibility(getView().VISIBLE);
                                     bambino.setText(input);
 
                                 }
@@ -287,6 +289,7 @@ public class Menu1 extends Fragment {
                                             scrivi_str("saldoappo1", input2);
 
                                             TextView saldo = getView().findViewById(R.id.textView2);
+                                            saldo.setVisibility(getView().VISIBLE);
                                             saldo.setText(input2);
                                         }
                                     });
@@ -301,10 +304,11 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     scrivi_str("bambinoappo2", input);
                                     Log.e("bambino", input);
                                     TextView bambino2 = getView().findViewById(R.id.textView6);
+                                    bambino2.setVisibility(getView().VISIBLE);
                                     bambino2.setText(input);
                                 }
                             });
@@ -320,6 +324,7 @@ public class Menu1 extends Fragment {
                                             input2 = "Saldo: " + input2;
                                             scrivi_str("saldoappo2", input2);
                                             TextView saldo2 = getView().findViewById(R.id.textView7);
+                                            saldo2.setVisibility(getView().VISIBLE);
                                             saldo2.setText(input2);
                                         }
                                     });
@@ -332,10 +337,11 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     scrivi_str("bambinoappo2", input);
                                     Log.e("bambino", input);
                                     TextView bambino2 = getView().findViewById(R.id.textView8);
+                                    bambino2.setVisibility(getView().VISIBLE);
                                     bambino2.setText(input);
                                 }
                             });
@@ -352,6 +358,9 @@ public class Menu1 extends Fragment {
                                             scrivi_str("saldoappo2", input2);
                                             TextView saldo2 = getView().findViewById(R.id.textView9);
                                             saldo2.setText(input2);
+                                            saldo2.setVisibility(getView().VISIBLE);
+
+
                                         }
                                     });
                         }
@@ -373,9 +382,10 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino1", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     Log.e("bambino", input);
                                     TextView bambino = getView().findViewById(R.id.textView4);
+                                    bambino.setVisibility(getView().VISIBLE);
                                     bambino.setText(input);
 
                                 }
@@ -393,7 +403,10 @@ public class Menu1 extends Fragment {
                                             scrivi_str("saldoappo1", input2);
 
                                             TextView saldo = getView().findViewById(R.id.textView2);
+                                            saldo.setVisibility(getView().VISIBLE);
                                             saldo.setText(input2);
+
+
                                         }
                                     });
 
@@ -407,10 +420,11 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     scrivi_str("bambinoappo2", input);
                                     Log.e("bambino", input);
                                     TextView bambino2 = getView().findViewById(R.id.textView6);
+                                    bambino2.setVisibility(getView().VISIBLE);
                                     bambino2.setText(input);
                                 }
                             });
@@ -426,6 +440,7 @@ public class Menu1 extends Fragment {
                                             input2 = "Saldo: " + input2;
                                             scrivi_str("saldoappo2", input2);
                                             TextView saldo2 = getView().findViewById(R.id.textView7);
+                                            saldo2.setVisibility(getView().VISIBLE);
                                             saldo2.setText(input2);
                                         }
                                     });
@@ -438,10 +453,11 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     scrivi_str("bambinoappo2", input);
                                     Log.e("bambino", input);
                                     TextView bambino2 = getView().findViewById(R.id.textView8);
+                                    bambino2.setVisibility(getView().VISIBLE);
                                     bambino2.setText(input);
                                 }
                             });
@@ -457,6 +473,7 @@ public class Menu1 extends Fragment {
                                             input2 = "Saldo: " + input2;
                                             scrivi_str("saldoappo2", input2);
                                             TextView saldo2 = getView().findViewById(R.id.textView9);
+                                            saldo2.setVisibility(getView().VISIBLE);
                                             saldo2.setText(input2);
                                         }
                                     });
@@ -470,10 +487,11 @@ public class Menu1 extends Fragment {
                                     String input = html1;
                                     Log.e("bambino", html1);
                                     input = input.substring(html1.indexOf(">") + 1, html1.lastIndexOf("\\"));
-                                    input = "Bambino: " + input;
+                                    input = input;
                                     scrivi_str("bambinoappo2", input);
                                     Log.e("bambino", input);
                                     TextView bambino2 = getView().findViewById(R.id.textView11);
+                                    bambino2.setVisibility(getView().VISIBLE);
                                     bambino2.setText(input);
                                 }
                             });
@@ -489,7 +507,10 @@ public class Menu1 extends Fragment {
                                             input2 = "Saldo: " + input2;
                                             scrivi_str("saldoappo2", input2);
                                             TextView saldo2 = getView().findViewById(R.id.textView12);
+                                            saldo2.setVisibility(getView().VISIBLE);
                                             saldo2.setText(input2);
+
+
                                         }
                                     });
 
@@ -497,7 +518,6 @@ public class Menu1 extends Fragment {
                         }
 // *********************************************************************************************************************
 //                    *****************************************************************************************************
-
 
                     }
                 }
@@ -508,13 +528,11 @@ public class Menu1 extends Fragment {
 
             });
 
-
         }
 
 
 
         return v;
-
 
     }
 
@@ -529,153 +547,3 @@ public class Menu1 extends Fragment {
 
 }
 
-/*
-*  webView.navigationDelegate = self
-        tableView.dataSource = self
-        tableView.delegate = self
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cella")
-
-        // Do any additional setup after loading the view.
-
-        let defaults = UserDefaults.standard
-        let  connesso: String = defaults.string(forKey: "connesso") ?? "NO"
-        if connesso == "NO" || connesso == "0"
-        {
-            createAlert (title: "errore credenziali",message: "Impostare le credenziali in impostazioni")
-        }
-
-        if (self.text1.text != "error" && connesso == "1" )
-        {
-
-            createAlert (title: "Credenziali ok",message: "Attendere il caricamento dei dati")        }
-        text1.delegate = self
-        text2.delegate = self
-
-
-        if revealViewController() != nil {
-            button_saldo.target = revealViewController()
-            button_saldo.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-
-
-
-        let myURL = URL(string:"https://www.schoolesuite.it/default1/NSC_Login.aspx?installation_code=fontenuopre")
-        let myRequest = URLRequest(url: myURL!)
-        webView.load(myRequest)
-
-
-    }
-
-
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if (webView == self.webView)
-        {
-
-
-            let defaults = UserDefaults.standard
-            let  connesso: String = defaults.string(forKey: "connesso") ?? "NO"
-
-
-            if connesso == "NO" || connesso == "0"
-            {self.text1.text = "impostare credenziali"
-                self.label1.text = "impostare credenziali"
-
-
-            }
-            if (self.text1.text != "error" && connesso == "1" )
-            {
-                self.label1.text = ""
-                let defaults = UserDefaults.standard
-
-
-                let   user: String =  defaults.string(forKey: "user") ?? "NO"
-                let   pass: String = defaults.string(forKey: "pass") ?? "NO"
-                print(user + "  " + pass)
-
-                webView.evaluateJavaScript("document.getElementById('txtUsername').value='" + user + "';" + "document.getElementById('txtPassword').value='" + pass + "';" + "document.getElementById('btnOK').click()", completionHandler: { result, error  in
-
-                    if error != nil {
-
-                    }
-                })
-
-
-
-
-                if (webView.url?.absoluteString.contains("login") ?? false) {
-                    self.text1.text = "error"
-                }
-
-                if (webView.url?.absoluteString.contains("PWM_ChildrenList.aspx")) ?? false {
-
-
-                    webView.evaluateJavaScript("(function() { return (document.getElementById('tblChildrenList').rows.length); })();", completionHandler: { result, error in
-                        if let height = result as? Int {
-                            self.contabambini =  height - 1
-                            print("numero righe")
-                            print (height)
-                        }
-                    })
-            print("contabambini")
-               print(self.contabambini)
-
-
-                    webView.evaluateJavaScript("(function(){var div=';';var ret;ret =';';var table = document.getElementById('tblChildrenList');for (var i = 1, row; row = table.rows[i]; i++) {col = row.cells[0]; ret = ret + row.cells[0].innerText + div+ row.cells[1].innerText+div;}return ret;})();",completionHandler: { result, error in
-                        if let Nome = result as? String {
-                        print(Nome ?? "nullo")
-
-
-                            let appo = String(Nome.dropFirst())    // "ello"
-                            let  fullName = String(appo.dropLast())
-
-
-                            let fullNameArr = fullName.components(separatedBy: ";")
-
-
-                            for (index, element) in fullNameArr.enumerated() {
-                                if index % 2 == 0 {
-                                   self.bambini.append(element)
-                                } else {
-                                self.soldi.append(element)
-                                }
-                            }
-
-
-
-                			self.tableView.reloadData()
-                        }})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                }
-
-
-
-
-
-            }
-        }
-*
-* */
